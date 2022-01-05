@@ -18,10 +18,8 @@ public class CalenderController {
         }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        tasks.stream().map(t -> new Pair<>(t, t.getDeadlineRemainingDay()))
-                .filter(p -> p.getValue() >= 0)
-                .sorted(Comparator.comparing(Pair::getValue))
-                .forEach(taskDayPair -> System.out.println(getTaskStar(taskDayPair.getValue()) + simpleDateFormat.format(taskDayPair.getKey().getDeadline()) + "__remaining days:" + taskDayPair.getValue()));
+       tasks.stream().sorted(Comparator.comparingLong(Task::getDeadlineRemainingDay))
+                .forEach(t-> System.out.println(getTaskStar(t.getDeadlineRemainingDay()) + simpleDateFormat.format(t.getDeadline()) + "__remaining days:" + t.getDeadlineRemainingDay()));
     }
 
     private String getTaskStar(Long day) {
