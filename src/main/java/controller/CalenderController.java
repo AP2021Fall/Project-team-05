@@ -1,7 +1,6 @@
 package controller;
 
 
-import com.sun.tools.javac.util.Pair;
 import model.Task;
 import model.User;
 
