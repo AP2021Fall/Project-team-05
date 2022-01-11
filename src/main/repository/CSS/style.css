@@ -1,0 +1,24 @@
+.blue1{
+    -fx-background-image: url("blue1.png");
+}
+.blue2{
+    -fx-background-image: url("blue2.png");
+}
+.blue3{
+    -fx-background-image: url("blue3.png");
+}
+.blue4{
+    -fx-background-image: url("blue4.png");
+}
+.blue5{
+    -fx-background-image: url("blue5.png");
+}
+.gray1{
+    -fx-background-image: url("gray1.png");
+}
+.gray2{
+    -fx-background-image: url("gray2.png");
+}
+.green1{
+    -fx-background-image: url("green1.png");
+}
