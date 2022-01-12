@@ -6,6 +6,7 @@ import java.util.List;
 
 public class User {
     private static List<User> users = new ArrayList<>();
+    private static User loggedInUser;
 
     private String name;
     private String username;
@@ -16,6 +17,7 @@ public class User {
     private int totalScore = 0;
     private List<LocalDateTime> loginTimes = new ArrayList<>();
     private List<String> teamLeadNotifications = new ArrayList<>();
+    private Task currentTask;
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -139,6 +141,14 @@ public class User {
     public void setTotalScore(int totalScore) {
         this.totalScore = totalScore;
     }
+
+    public Task getCurrentTask(){return this.currentTask;}
+
+    public void setCurrentTask(Task task){this.currentTask=task;}
+
+    public static void setLoggedInUser(User user){ loggedInUser = user; }
+
+    public static User getLoggedInUser(){return loggedInUser;}
 
     public void updateScore(int i) {
         totalScore += i;
