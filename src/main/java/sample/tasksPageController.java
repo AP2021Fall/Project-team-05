@@ -40,8 +40,10 @@ public class tasksPageController {
 
     public void initialize(){
         loggedInUser = User.getLoggedInUser();
-
-        addToList(orderLexicographic(true));
+        ArrayList<Task> tasks = orderLexicographic(true);
+        if (tasks!=null){
+            addToList(tasks);
+        }
 
         if (!UserAccessChecker.isLeader(loggedInUser)) {
             tasksAnchorPane.getChildren().remove(addTaskButton);
@@ -50,25 +52,30 @@ public class tasksPageController {
 
     public ArrayList<Task> orderLexicographic(boolean descending){
         List<Task> tasks = Task.userTasksMap.get(loggedInUser);
-        ArrayList<String> names = new ArrayList<>();
-        for (Task task : tasks){
-            names.add(task.getTitle());
-        }
-        Collections.sort(names);
-        if (!descending){
-            Collections.reverse(names);
-        }
-        ArrayList<Task> temp = new ArrayList<>();
+        if (tasks!=null) {
+            ArrayList<String> names = new ArrayList<>();
+            for (Task task : tasks) {
+                names.add(task.getTitle());
+            }
+            Collections.sort(names);
+            if (!descending) {
+                Collections.reverse(names);
+            }
+            ArrayList<Task> temp = new ArrayList<>();
 
+            for (String s : names) {
+                for (Task task : tasks) {
+                    if (task.getTitle().equals(s)) {
+                        if (!temp.contains(task)) {
+                            temp.add(task);
+                        }
 
-        for (int i =0 ; i<names.size() ; i++){
-            for (Task task : tasks){
-                if (task.getTitle().equals(names.get(i))){
-                    temp.add(task);
+                    }
                 }
             }
+            return temp;
         }
-        return temp;
+        return null;
     }
 
 
@@ -76,50 +83,57 @@ public class tasksPageController {
         ArrayList<Task> tasks = orderLexicographic(true);
         ArrayList<Task> temp = new ArrayList<>();
 
-        ArrayList<String> priorities = new ArrayList<>();
-        priorities.add("Highest");
-        priorities.add("High");
-        priorities.add("Low");
-        priorities.add("Lowest");
+        if (tasks!=null) {
 
-        for (String priority : priorities){
-            for (Task task : tasks){
-                if (task.getPriority().equals(priority)){
-                    temp.add(task);
+            ArrayList<String> priorities = new ArrayList<>();
+            priorities.add("Highest");
+            priorities.add("High");
+            priorities.add("Low");
+            priorities.add("Lowest");
+
+            for (String priority : priorities) {
+                for (Task task : tasks) {
+                    if (task.getPriority().equals(priority)) {
+                        temp.add(task);
+                    }
                 }
             }
-        }
 
-        if (!descending){
-            Collections.reverse(temp);
+            if (!descending) {
+                Collections.reverse(temp);
+            }
+            return temp;
         }
-        return temp;
+        return null;
     }
 
     public ArrayList<Task> orderDeadline(boolean descending){
         ArrayList<Task> tasks = orderLexicographic(true);
-        ArrayList<Task> temp = new ArrayList<>();
-        ArrayList<String> dateStrings = new ArrayList<>();
-        for (Task task:tasks){
-            dateStrings.add(task.getDeadline().toString());
-        }
+        if (tasks!=null) {
+            ArrayList<Task> temp = new ArrayList<>();
+            ArrayList<String> dateStrings = new ArrayList<>();
+            for (Task task : tasks) {
+                dateStrings.add(task.getDeadline().toString());
+            }
 
-        Collections.sort(dateStrings);
-        for (int j=0 ; j<dateStrings.size() ; j++){
-            for (int i=0 ; i<tasks.size() ; i++){
-                if (tasks.get(i).getDeadline().toString().equals(dateStrings.get(j))){
-                    temp.add(tasks.get(i));
-                    tasks.remove(tasks.get(i));
-                    dateStrings.remove(dateStrings.get(j));
-                    i--;
-                    j--;
+            Collections.sort(dateStrings);
+            for (int j = 0; j < dateStrings.size(); j++) {
+                for (int i = 0; i < tasks.size(); i++) {
+                    if (tasks.get(i).getDeadline().toString().equals(dateStrings.get(j))) {
+                        temp.add(tasks.get(i));
+                        tasks.remove(tasks.get(i));
+                        dateStrings.remove(dateStrings.get(j));
+                        i--;
+                        j--;
+                    }
                 }
             }
+            if (descending) {
+                Collections.reverse(temp);
+            }
+            return temp;
         }
-        if (descending){
-            Collections.reverse(temp);
-        }
-        return temp;
+        return null;
     }
 
     public void lexicographicButton(ActionEvent actionEvent) {
@@ -131,7 +145,9 @@ public class tasksPageController {
             tasks = orderLexicographic(false);
         }
         currentSort = "L";
-        addToList(tasks);
+        if (tasks!=null) {
+            addToList(tasks);
+        }
     }
 
     public void priorityButton(ActionEvent actionEvent) {
@@ -143,7 +159,9 @@ public class tasksPageController {
             tasks = orderPriority(false);
         }
         currentSort = "P";
-        addToList(tasks);
+        if (tasks!=null) {
+            addToList(tasks);
+        }
     }
 
     public void deadlineButton(ActionEvent actionEvent) {
@@ -155,7 +173,9 @@ public class tasksPageController {
             tasks = orderDeadline(false);
         }
         currentSort = "D";
-        addToList(tasks);
+        if (tasks!=null) {
+            addToList(tasks);
+        }
     }
 
     public void descendingButton(ActionEvent actionEvent) {
@@ -170,7 +190,9 @@ public class tasksPageController {
             tasks = orderDeadline(true);
         }
         isCurrentOrderDescending = true;
-        addToList(tasks);
+        if (tasks!=null) {
+            addToList(tasks);
+        }
     }
 
     public void AscendingButton(ActionEvent actionEvent) {
@@ -185,39 +207,49 @@ public class tasksPageController {
             tasks = orderDeadline(false);
         }
         isCurrentOrderDescending = false;
-        addToList(tasks);
+        if (tasks!=null) {
+            addToList(tasks);
+        }
     }
 
 
     public void addToList(ArrayList<Task> tasks){
-        for (int i = 0 ; i<tasks.size() ; i++){
-            Label title = new Label(tasks.get(i).getTitle());
-            Label priority = new Label(tasks.get(i).getPriority());
-            int finalI = i;
-            title.setOnMouseClicked(event ->{
-                loggedInUser.setCurrentTask(tasks.get(finalI));
-                try {
-                    openTask();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            priority.setOnMouseClicked(event -> {
-                loggedInUser.setCurrentTask(tasks.get(finalI));
-                try {
-                    openTask();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            titleLabels.add(title);
-            priorityLabels.add(priority);
-        }
+        titleLabels = new ArrayList<>();
+        priorityLabels = new ArrayList<>();
 
+        if (tasks!=null) {
 
-        for (int i=0 ; i<tasks.size() ; i++) {
-            vBox.getChildren().add(titleLabels.get(i));
-            vboxPriority.getChildren().add(priorityLabels.get(i));
+            for (int i = 0; i < tasks.size(); i++) {
+                Label title = new Label(tasks.get(i).getTitle());
+                Label priority = new Label(tasks.get(i).getPriority());
+                int finalI = i;
+                title.setOnMouseClicked(event -> {
+                    loggedInUser.setCurrentTask(tasks.get(finalI));
+                    try {
+                        openTask();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                priority.setOnMouseClicked(event -> {
+                    loggedInUser.setCurrentTask(tasks.get(finalI));
+                    try {
+                        openTask();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                titleLabels.add(title);
+                priorityLabels.add(priority);
+            }
+
+            vBox.getChildren().removeAll(vBox.getChildren());
+            vboxPriority.getChildren().removeAll(vboxPriority.getChildren());
+
+            for (int i = 0; i < tasks.size(); i++) {
+                vBox.getChildren().add(titleLabels.get(i));
+                vboxPriority.getChildren().add(priorityLabels.get(i));
+            }
         }
     }
 
