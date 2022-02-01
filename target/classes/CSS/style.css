@@ -22,3 +22,32 @@
 .green1{
     -fx-background-image: url("green1.png");
 }
+.purple{
+    -fx-background-color: #D2B4DE;
+}
+.darkPurple{
+    -fx-background-color: #AF7AC5;
+}
+.icon{
+    -fx-background-image: url("cancel.png");
+    -fx-background-repeat: false;
+}
+
+.chatRoomIcon{
+    -fx-background-image: url("chatRoom.png");
+    -fx-background-repeat: false;
+}
+
+.sendIcon{
+    -fx-background-image: url("sendButton.png");
+    -fx-background-repeat: false;
+}
+
+.backIcon{
+    -fx-background-image: url("back.png");
+    -fx-background-repeat: false;
+}
+.searchIcon{
+    -fx-background-image: url("searchIcon.png");
+    -fx-background-repeat: false;
+}

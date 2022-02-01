@@ -123,8 +123,6 @@ public class tasksPageController {
                         temp.add(tasks.get(i));
                         tasks.remove(tasks.get(i));
                         dateStrings.remove(dateStrings.get(j));
-                        i--;
-                        j--;
                     }
                 }
             }

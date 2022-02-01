@@ -18,6 +18,7 @@ public class User {
     private List<LocalDateTime> loginTimes = new ArrayList<>();
     private List<String> teamLeadNotifications = new ArrayList<>();
     private Task currentTask;
+    private Team currentTeam;
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -145,6 +146,10 @@ public class User {
     public Task getCurrentTask(){return this.currentTask;}
 
     public void setCurrentTask(Task task){this.currentTask=task;}
+
+    public void setCurrentTeam(Team team){this.currentTeam = team;}
+
+    public Team getCurrentTeam(){return this.currentTeam;}
 
     public static void setLoggedInUser(User user){ loggedInUser = user; }
 
