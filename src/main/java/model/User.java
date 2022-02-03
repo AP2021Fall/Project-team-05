@@ -19,6 +19,7 @@ public class User {
     private List<String> teamLeadNotifications = new ArrayList<>();
     private Task currentTask;
     private Team currentTeam;
+    private User chosenMember;
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -150,6 +151,10 @@ public class User {
     public void setCurrentTeam(Team team){this.currentTeam = team;}
 
     public Team getCurrentTeam(){return this.currentTeam;}
+
+    public void setChosenMember(User member){this.chosenMember = member;}
+
+    public User getChosenMember(){return this.chosenMember;}
 
     public static void setLoggedInUser(User user){ loggedInUser = user; }
 
