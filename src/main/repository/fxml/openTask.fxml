@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="headAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="blue5" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.openTaskController">
    <children>
       <TabPane fx:id="tabPane" layoutX="14.0" layoutY="14.0" prefHeight="570.0" prefWidth="874.0" tabClosingPolicy="UNAVAILABLE">
@@ -86,7 +85,7 @@
                               <Font name="System Bold Italic" size="19.0" />
                            </font>
                         </Label>
-                        <Button layoutX="769.0" layoutY="487.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="70.0" text="back" />
+                        <Button layoutX="792.0" layoutY="471.0" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="42.0" style="-fx-background-color: 0000;" styleClass="backIcon" stylesheets="@../CSS/style.css" />
                         <ScrollPane layoutX="594.0" layoutY="78.0" prefHeight="211.0" prefWidth="219.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="463.0" prefWidth="206.0">

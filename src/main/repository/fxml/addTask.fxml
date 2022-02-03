@@ -48,7 +48,7 @@
          </font>
       </Label>
       <TextField fx:id="descriptionField" alignment="TOP_LEFT" layoutX="176.0" layoutY="321.0" prefHeight="180.0" prefWidth="287.0" />
-      <Button layoutX="804.0" layoutY="22.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="68.0" text="back" />
+      <Button layoutX="816.0" layoutY="516.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="42.0" style="-fx-background-color: 0000;" styleClass="backIcon" stylesheets="@../CSS/style.css" />
       <MenuButton fx:id="usersDropDown" layoutX="597.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="240.0" text="Users:" />
       <Button layoutX="176.0" layoutY="534.0" mnemonicParsing="false" onAction="#addTask" prefHeight="26.0" prefWidth="94.0" text="add Task" />
    </children>

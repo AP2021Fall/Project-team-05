@@ -19,7 +19,7 @@
               <AnchorPane fx:id="tasksAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="blue3" stylesheets="@../CSS/style.css">
                      <children>
                         <Button fx:id="addTaskButton" layoutX="696.0" layoutY="474.0" mnemonicParsing="false" onAction="#addTask" prefHeight="26.0" prefWidth="85.0" text="Add Task" />
-                        <Button layoutX="403.0" layoutY="15.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="84.0" text="search" />
+                        <Button layoutX="434.0" layoutY="7.0" mnemonicParsing="false" onAction="#search" prefHeight="46.0" prefWidth="51.0" style="-fx-background-color: 000;" styleClass="searchIcon" stylesheets="@../CSS/style.css" />
                         <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="60.0" prefHeight="455.0" prefWidth="472.0">
                           <content>
                             <AnchorPane fx:id="AN" minHeight="0.0" minWidth="0.0" prefHeight="1617.0" prefWidth="458.0">
@@ -43,8 +43,8 @@
                             <MenuItem fx:id="AscendingItem" mnemonicParsing="false" onAction="#AscendingButton" text="Ascending" />
                           </items>
                         </MenuButton>
-                        <Button layoutX="796.0" layoutY="475.0" mnemonicParsing="false" onAction="#back" text="back" />
-                        <TextField fx:id="searchBox" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="373.0" promptText="..." />
+                        <Button layoutX="794.0" layoutY="464.0" mnemonicParsing="false" onAction="#back" prefHeight="46.0" prefWidth="42.0" style="-fx-background-color: 000;" styleClass="backIcon" stylesheets="@../CSS/style.css" />
+                        <TextField fx:id="searchBox" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="408.0" promptText="..." />
                      </children>
                   </AnchorPane>
             </content>
